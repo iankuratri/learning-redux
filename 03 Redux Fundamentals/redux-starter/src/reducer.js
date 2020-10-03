@@ -1,6 +1,6 @@
 let lastId = 1;
 
-function reducer(state = [], action) {
+export default function reducer(state = [], action) {
   switch (action.key) {
     case "bugAdded":
       return [
