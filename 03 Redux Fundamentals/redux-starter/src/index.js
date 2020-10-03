@@ -1,5 +1,5 @@
 import store from "./store";
-import * as actions from "./actionTypes";
+import { bugAdded, bugRemoved } from "./actionCreators";
 
 // Subscribing to store
 const unsubscribe = store.subscribe(() => {
@@ -7,17 +7,9 @@ const unsubscribe = store.subscribe(() => {
 });
 
 // Adding a bug
-store.dispatch({
-  type: actions.BUG_ADDED,
-  payload: {
-    description: "UI Bug.",
-  },
-});
+store.dispatch(bugAdded("UI Bug."));
 
 unsubscribe();
 
 // Deleting a bug
-store.dispatch({
-  type: actions.BUG_REMOVED,
-  payload: { id: 1 },
-});
+store.dispatch(bugRemoved(1));
