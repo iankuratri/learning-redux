@@ -1,18 +1,18 @@
-import store from "./store";
-import { bugAdded, bugRemoved, bugResolved } from "./actionCreators";
+import store from "./customStore";
+import * as actions from "./actionCreators";
 
 // Subscribing to store
-const unsubscribe = store.subscribe(() => {
+store.subscribe(() => {
   console.log("Store Changed: ", store.getState());
 });
 
 // Adding a bug
-store.dispatch(bugAdded("UI Bug."));
+store.dispatch(actions.bugAdded("UI Bug."));
 
 // Resolving a bug
-store.dispatch(bugResolved(1));
+store.dispatch(actions.bugResolved(1));
 
 // Deleting a bug
-store.dispatch(bugRemoved(1));
+store.dispatch(actions.bugRemoved(1));
 
-unsubscribe();
+// console.log(store.getState());
