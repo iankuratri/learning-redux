@@ -7,7 +7,9 @@ const unsubscribe = store.subscribe(() => {
 });
 
 // Adding a bug
-store.dispatch(bugAdded("UI Bug."));
+store.dispatch(bugAdded("UI Bug 1."));
+store.dispatch(bugAdded("UI Bug 2."));
+store.dispatch(bugAdded("UI Bug 3."));
 
 // Resolving a bug
 store.dispatch(bugResolved(1));
