@@ -1,5 +1,7 @@
-import store from "./store";
-import { bugAdded, bugRemoved, bugResolved } from "./actionCreators";
+import configureStore from "./store/configureStore";
+import * as actions from "./store/bugs";
+
+const store = configureStore();
 
 // Subscribing to store
 const unsubscribe = store.subscribe(() => {
@@ -7,14 +9,14 @@ const unsubscribe = store.subscribe(() => {
 });
 
 // Adding a bug
-store.dispatch(bugAdded("UI Bug 1."));
-store.dispatch(bugAdded("UI Bug 2."));
-store.dispatch(bugAdded("UI Bug 3."));
+store.dispatch(actions.bugAdded("UI Bug 1."));
+store.dispatch(actions.bugAdded("UI Bug 2."));
+store.dispatch(actions.bugAdded("UI Bug 3."));
 
 // Resolving a bug
-store.dispatch(bugResolved(1));
+store.dispatch(actions.bugResolved(1));
 
 // Deleting a bug
-store.dispatch(bugRemoved(1));
+store.dispatch(actions.bugRemoved(1));
 
 unsubscribe();
