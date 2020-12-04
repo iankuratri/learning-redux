@@ -9,14 +9,14 @@ const unsubscribe = store.subscribe(() => {
 });
 
 // Adding a bug
-store.dispatch(actions.bugAdded("UI Bug 1."));
-store.dispatch(actions.bugAdded("UI Bug 2."));
-store.dispatch(actions.bugAdded("UI Bug 3."));
+store.dispatch(actions.bugAdded({ description: "UI Bug 1." }));
+store.dispatch(actions.bugAdded({ description: "UI Bug 2." }));
+store.dispatch(actions.bugAdded({ description: "UI Bug 3." }));
 
 // Resolving a bug
-store.dispatch(actions.bugResolved(1));
+store.dispatch(actions.bugResolved({ id: 1 }));
 
 // Deleting a bug
-store.dispatch(actions.bugRemoved(1));
+store.dispatch(actions.bugRemoved({ id: 1 }));
 
 unsubscribe();
