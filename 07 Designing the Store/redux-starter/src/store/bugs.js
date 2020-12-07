@@ -29,3 +29,6 @@ const slice = createSlice({
 
 export const { bugAdded, bugRemoved, bugResolved } = slice.actions;
 export default slice.reducer;
+
+export const getUnresolvedBugs = (store) =>
+  store.entities.bugs.filter((bug) => !bug.resolved);
