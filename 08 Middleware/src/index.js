@@ -50,6 +50,11 @@ store.dispatch((dispatch, getState) => {
   dispatch({ type: "bugsReceived", bugs: [1, 2, 3, 4] });
 });
 
+store.dispatch({
+  type: "error",
+  payload: { message: "This is a test Error." },
+});
+
 unsubscribe();
 
 const unresolvedBugs = getUnresolvedBugs(store.getState());
