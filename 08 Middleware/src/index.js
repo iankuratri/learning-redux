@@ -17,6 +17,8 @@ const unsubscribe = store.subscribe(() => {
   console.log("Store Changed: ", store.getState());
 });
 
+/*
+
 // Adding users
 store.dispatch(userAdded({ name: "User 1" }));
 store.dispatch(userAdded({ name: "User 2" }));
@@ -41,6 +43,12 @@ store.dispatch(projectAdded({ name: "My Project 2" }));
 
 // Deleting project
 store.dispatch(projectRemoved({ id: 1 }));
+
+*/
+
+store.dispatch((dispatch, getState) => {
+  dispatch({ type: "bugsReceived", bugs: [1, 2, 3, 4] });
+});
 
 unsubscribe();
 
