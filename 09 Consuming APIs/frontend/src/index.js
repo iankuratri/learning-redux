@@ -9,7 +9,7 @@ import {
 } from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
 import { userAdded, userRemoved } from "./store/users";
-import { loadBugs } from "./store/bugs";
+import { loadBugs, addBug } from "./store/bugs";
 
 const store = configureStore();
 
@@ -62,7 +62,6 @@ console.log("unresolvedBugs: ", unresolvedBugs);
 const userBugs = getBugsByUser(1)(store.getState());
 console.log("userBugs :", userBugs);
 
-*/
 
 // 1st api call
 store.dispatch(loadBugs());
@@ -71,5 +70,9 @@ store.dispatch(loadBugs());
 setTimeout(() => {
   store.dispatch(loadBugs());
 }, 1000);
+
+*/
+
+store.dispatch(addBug({ description: "my new bug." }));
 
 unsubscribe();

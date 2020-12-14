@@ -4,8 +4,6 @@ import { apiCallBegan } from "./api";
 import moment from "moment";
 
 // Actions and Reducer created using single function createSlice
-let lastId = 0;
-
 const slice = createSlice({
   name: "bugs",
   initialState: {
@@ -29,11 +27,7 @@ const slice = createSlice({
     },
 
     bugAdded: (bugs, action) => {
-      bugs.list.push({
-        id: ++lastId,
-        description: action.payload.description,
-        resolved: false,
-      });
+      bugs.list.push(action.payload);
     },
 
     bugRemoved: (bugs, action) => {
@@ -83,6 +77,14 @@ export const loadBugs = () => (dispatch, getState) => {
     })
   );
 };
+
+export const addBug = (bug) =>
+  apiCallBegan({
+    url,
+    method: "post",
+    data: bug,
+    onSuccess: bugAdded.type,
+  });
 
 // Memoizing selector
 export const getUnresolvedBugs = createSelector(
