@@ -64,6 +64,12 @@ console.log("userBugs :", userBugs);
 
 */
 
+// 1st api call
 store.dispatch(loadBugs());
+
+// 2nd api call after 1 sec
+setTimeout(() => {
+  store.dispatch(loadBugs());
+}, 1000);
 
 unsubscribe();

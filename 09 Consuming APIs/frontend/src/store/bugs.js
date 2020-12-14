@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { apiCallBegan } from "./api";
+import moment from "moment";
 
 // Actions and Reducer created using single function createSlice
 let lastId = 0;
@@ -23,6 +24,7 @@ const slice = createSlice({
 
     bugsReceived: (bugs, action) => {
       bugs.list = action.payload;
+      bugs.lastFetch = Date.now();
       bugs.loading = false;
     },
 
@@ -66,13 +68,21 @@ export default slice.reducer;
 // Action creators
 const url = "/bugs";
 
-export const loadBugs = () =>
-  apiCallBegan({
-    url,
-    onStart: bugsRequested.type,
-    onSuccess: bugsReceived.type,
-    onError: bugsRequestFailed.type,
-  });
+export const loadBugs = () => (dispatch, getState) => {
+  const { lastFetch } = getState().entities.bugs;
+
+  const diffInMinutes = moment().diff(moment(lastFetch), "minutes");
+  if (diffInMinutes < 10) return;
+
+  dispatch(
+    apiCallBegan({
+      url,
+      onStart: bugsRequested.type,
+      onSuccess: bugsReceived.type,
+      onError: bugsRequestFailed.type,
+    })
+  );
+};
 
 // Memoizing selector
 export const getUnresolvedBugs = createSelector(
