@@ -9,7 +9,7 @@ import {
 } from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
 import { userAdded, userRemoved } from "./store/users";
-import * as actions from "./store/api";
+import { loadBugs } from "./store/bugs";
 
 const store = configureStore();
 
@@ -64,11 +64,6 @@ console.log("userBugs :", userBugs);
 
 */
 
-store.dispatch(
-  actions.apiCallBegan({
-    url: "/bugs",
-    onSuccess: "bugsReceived",
-  })
-);
+store.dispatch(loadBugs());
 
 unsubscribe();
