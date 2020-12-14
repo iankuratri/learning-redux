@@ -15,9 +15,15 @@ const api = ({ dispatch }) => (next) => async (action) => {
       data,
     });
 
-    dispatch({ type: onSuccess, payload: response.data });
+    // general action
+    dispatch(actions.apiCallSuccess(response.data));
+    // specific action
+    if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
   } catch (error) {
-    dispatch({ type: onError, payload: error.message });
+    // general action
+    dispatch(actions.apiCallFailed(error.message));
+    // specific action
+    if (onError) dispatch({ type: onError, payload: error.message });
   }
 };
 
