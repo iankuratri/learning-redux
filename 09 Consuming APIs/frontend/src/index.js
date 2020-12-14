@@ -44,7 +44,6 @@ store.dispatch(projectAdded({ name: "My Project 2" }));
 // Deleting project
 store.dispatch(projectRemoved({ id: 1 }));
 
-*/
 
 store.dispatch((dispatch, getState) => {
   dispatch({ type: "bugsReceived", bugs: [1, 2, 3, 4] });
@@ -55,10 +54,22 @@ store.dispatch({
   payload: { message: "This is a test Error." },
 });
 
-unsubscribe();
 
 const unresolvedBugs = getUnresolvedBugs(store.getState());
 console.log("unresolvedBugs: ", unresolvedBugs);
 
 const userBugs = getBugsByUser(1)(store.getState());
 console.log("userBugs :", userBugs);
+
+*/
+
+store.dispatch({
+  type: "apiCallBegan",
+  payload: {
+    url: "/bugs",
+    onSuccess: "bugsReceived",
+    onError: "apiCallFailed",
+  },
+});
+
+unsubscribe();
