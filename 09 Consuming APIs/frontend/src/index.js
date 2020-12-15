@@ -9,7 +9,7 @@ import {
 } from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
 import { userAdded, userRemoved } from "./store/users";
-import { loadBugs, addBug, resolveBug } from "./store/bugs";
+import { loadBugs, addBug, resolveBug, assignBugToUser } from "./store/bugs";
 
 const store = configureStore();
 
@@ -73,12 +73,20 @@ setTimeout(() => {
 
 
 store.dispatch(addBug({ description: "my new bug." }));
+
+
+// resolving a bug
+setTimeout(() => {
+  store.dispatch(resolveBug(3));
+}, 2000);
+
 */
 
 store.dispatch(loadBugs());
 
+// assigning a bug
 setTimeout(() => {
-  store.dispatch(resolveBug(3));
+  store.dispatch(assignBugToUser(1, 3));
 }, 2000);
 
 unsubscribe();
