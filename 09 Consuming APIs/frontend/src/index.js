@@ -9,7 +9,7 @@ import {
 } from "./store/bugs";
 import { projectAdded, projectRemoved } from "./store/projects";
 import { userAdded, userRemoved } from "./store/users";
-import { loadBugs, addBug } from "./store/bugs";
+import { loadBugs, addBug, resolveBug } from "./store/bugs";
 
 const store = configureStore();
 
@@ -71,8 +71,14 @@ setTimeout(() => {
   store.dispatch(loadBugs());
 }, 1000);
 
-*/
 
 store.dispatch(addBug({ description: "my new bug." }));
+*/
+
+store.dispatch(loadBugs());
+
+setTimeout(() => {
+  store.dispatch(resolveBug(3));
+}, 2000);
 
 unsubscribe();
