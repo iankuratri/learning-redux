@@ -102,6 +102,14 @@ export const assignBugToUser = (bugId, userId) =>
     onSuccess: bugAssignedToUser.type,
   });
 
+export const removeBug = (bugId) =>
+  apiCallBegan({
+    url: `${url}/${bugId}`,
+    method: "delete",
+    data: { resolved: true },
+    onSuccess: bugRemoved.type,
+  });
+
 // Memoizing selector
 export const getUnresolvedBugs = createSelector(
   (state) => state.entities.bugs,

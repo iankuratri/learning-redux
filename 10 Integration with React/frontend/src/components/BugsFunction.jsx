@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadBugs } from "./../store/bugs";
+import { loadBugs, removeBug } from "./../store/bugs";
 
 export default function BugsFunction() {
   const dispatch = useDispatch();
@@ -15,7 +15,15 @@ export default function BugsFunction() {
       <h2>Bugs Function Component</h2>
       <ul>
         {bugs.map((bug) => (
-          <li key={bug.id}>{bug.description}</li>
+          <li key={bug.id}>
+            {bug.description}
+            <button
+              title="Remove Bug"
+              onClick={() => dispatch(removeBug(bug.id))}
+            >
+              x
+            </button>
+          </li>
         ))}
       </ul>
     </div>
