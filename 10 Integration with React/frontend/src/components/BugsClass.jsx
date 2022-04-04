@@ -1,37 +1,14 @@
 import React, { Component } from "react";
-import StoreContext from "../contexts/storeContext";
-import { loadBugs } from "../store/bugs";
+import { connect } from "react-redux";
+import { loadBugs } from "./../store/bugs";
 
-export default class BugsClass extends Component {
-  static contextType = StoreContext;
-
-  state = {
-    bugs: [],
-  };
-
+class BugsClass extends Component {
   componentDidMount() {
-    const store = this.context;
-
-    this.unsubscribe = store.subscribe(() => {
-      const { list: bugsInStore } = store.getState().entities.bugs;
-      const { bugs: bugsInState } = this.state;
-
-      if (bugsInState !== bugsInStore) {
-        this.setState({
-          bugs: bugsInStore,
-        });
-      }
-    });
-
-    store.dispatch(loadBugs());
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
+    this.props.loadBugs();
   }
 
   render() {
-    const { bugs } = this.state;
+    const { bugs } = this.props;
 
     return (
       <div>
@@ -45,3 +22,14 @@ export default class BugsClass extends Component {
     );
   }
 }
+
+// bugs: state.entities.bugs.list
+const mapStateToProps = (state) => ({
+  bugs: state.entities.bugs.list,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadBugs: () => dispatch(loadBugs()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BugsClass);

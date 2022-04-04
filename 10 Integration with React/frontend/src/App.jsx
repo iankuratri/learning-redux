@@ -3,19 +3,20 @@ import "./App.css";
 import BugsClass from "./components/BugsClass";
 import BugsFunction from "./components/BugsFunction";
 import configureStore from "./store/configureStore";
-import StoreContext from "./contexts/storeContext";
+// import StoreContext from "./contexts/storeContext";
+import { Provider } from "react-redux";
 
 const store = configureStore();
 
 function App() {
   return (
-    <StoreContext.Provider value={store}>
+    <Provider store={store}>
       <main>
         <BugsClass />
         <div className="vl"></div>
         <BugsFunction />
       </main>
-    </StoreContext.Provider>
+    </Provider>
   );
 }
 
