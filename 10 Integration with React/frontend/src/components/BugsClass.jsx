@@ -12,7 +12,7 @@ class BugsClass extends Component {
 
     return (
       <div>
-        <h2>BugsClass</h2>
+        <h2>Bugs Class Component</h2>
         <ul>
           {bugs.map((bug) => (
             <li key={bug.id}>{bug.description}</li>
