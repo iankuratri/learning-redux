@@ -5,8 +5,8 @@ import { buyIceCream } from "../store/iceCream/iceCreamActions";
 function CakeContainer({ numberOfIceCream, buyIceCream }) {
   return (
     <div>
-      <h2>Number of cakes: {numberOfIceCream}</h2>
-      <button onClick={buyIceCream}>Buy cakes</button>
+      <h2>Number of icecream: {numberOfIceCream}</h2>
+      <button onClick={buyIceCream}>Buy icecream</button>
     </div>
   );
 }
