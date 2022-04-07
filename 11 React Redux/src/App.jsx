@@ -1,5 +1,5 @@
 import "./App.css";
-import CakeContainer from "./components/CakeContainer";
+import CakeContainer from "./components/HooksCakeContainer";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
