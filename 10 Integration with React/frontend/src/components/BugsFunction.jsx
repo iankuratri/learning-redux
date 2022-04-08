@@ -8,7 +8,7 @@ export default function BugsFunction() {
 
   useEffect(() => {
     dispatch(loadBugs());
-  });
+  }, []);
 
   return (
     <div>
